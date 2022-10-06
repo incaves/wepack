@@ -5,7 +5,7 @@ import { SumArr } from './tool/tool'
 console.log(SumArr([2, 3, 6, 9]))
 import $ from 'jquery'
 // 编写各行变色
-$('#myUl>li:odd').css('color', 'red') // 偶数
+$('#myUl>li:odd').css('color', 'blue') // 偶数
 $('#myUl>li:even').css('color', 'green') // 单数
 import './css/style.css' // css
 import './less/index.less' // less
@@ -20,3 +20,7 @@ import './assets/fonts/iconfont.css'
 let theIcon = document.createElement('i')
 theIcon.classList = 'iconfont icon-qq'
 document.body.appendChild(theIcon)
+const fun = () => {
+  console.log('箭头函数')
+}
+console.log(fun)

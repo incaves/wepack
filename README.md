@@ -16,6 +16,10 @@ yarn add webpack webpack-cli
 在package.json中配置了打包命令
 yarn build 执行打包  
 dist文件夹是打包后的文件
+package.json进行配置打包命令
+"scripts": {
+  "build": "webpack"
+},
 ```
 ###
 ###
@@ -150,5 +154,52 @@ webpack处理字体图标
 iconfont.hash(随机6位).ext(后缀)
 hash:6 = 随机生成
 ext会替换成 .eot/.woff的后缀名
+```
+###
+###
+```javascript
+wepack利用babel降低Javascript版本
+babel:把高版本的Javascript语法降级处理(为了考虑兼容性)
+babel-loadr:可以让webpack转译打包的Javascript代码
+yarn add babel-loader @babel/core @babel/preset-env -D
+{
+    test: /\.m?js$/,
+    exclude: /(node_modules|bower_components)/, // 忽略文件
+    use: {
+      loader: 'babel-loader', // 使用babel进行处理
+      // 加载器选项
+      options: {
+      // 预设@babel/preset-env 降级规则(按照这里的规则进行降级处理)
+         presets: ['@babel/preset-env'],
+        },
+    },
+},
+最后发现箭头函数被babel转译为了普通函数(funcation(){})
+```
+###
+###
+```javascript
+每次写完代码,想要看效果,都需要重新打包,很麻烦  
+此时就需要到了webpack的开发服务器
+下载模块包 yarn add webpack-dev-server -D
+package.json进行配置
+"scripts": {
+    "build": "webpack",
+    "serve": "webpack serve"
+},
+yarn serve 
+会自动打开一个端口 http://localhost:8080/
+发生了错误进行配置:mode: 'development'
+src的代码只要发生变化会自动打包
+```
+###
+###
+```javascript
+webpack更改端口号,并且自动打开浏览器
+在webpack.config.js下的rules规则下配置
+devServer: {
+    port: 6767,
+    open:true
+},
 ```
 ###

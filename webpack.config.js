@@ -16,7 +16,11 @@ module.exports = {
       template: './public/index.html',
     }),
   ],
-
+  mode: 'development',
+  devServer: {
+    port: 6767,
+    open: true,
+  },
   module: {
     // 规则
     // css
@@ -44,6 +48,19 @@ module.exports = {
         // 自定义文件名
         generator: {
           filename: 'fonts/[name].[hash:6][ext]',
+        },
+      },
+      // babel
+      {
+        test: /\.m?js$/,
+        exclude: /(node_modules|bower_components)/, // 忽略文件
+        use: {
+          loader: 'babel-loader', // 使用babel进行处理
+          // 加载器选项
+          options: {
+            // 预设@babel/preset-env 降级规则(按照这里的规则进行降级处理)
+            presets: ['@babel/preset-env'],
+          },
         },
       },
     ],
